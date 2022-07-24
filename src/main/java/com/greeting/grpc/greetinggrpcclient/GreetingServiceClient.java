@@ -1,5 +1,6 @@
 package com.greeting.grpc.greetinggrpcclient;
 
+import com.greeting.grpc.gen.proto.HelloResponse;
 import org.springframework.stereotype.Service;
 
 import net.devh.boot.grpc.client.inject.GrpcClient;
@@ -9,8 +10,12 @@ import com.greeting.grpc.gen.proto.GreetingServiceGrpc.GreetingServiceBlockingSt
 
 @Service
 public class GreetingServiceClient {
+    GreetingServiceBlockingStub greetingService;
+
     @GrpcClient("greeting-grpc-server")
-    GreetingServiceBlockingStub greetingServiceBlockingStub;
+    public void setGreetingService(GreetingServiceBlockingStub greetingService) {
+        this.greetingService = greetingService;
+    }
 
     public String receiveGreeting(String name, String dog, boolean loveDog) {
         HelloRequest request = HelloRequest.newBuilder()
@@ -19,6 +24,8 @@ public class GreetingServiceClient {
                 .setILoveMyDog(loveDog)
                 .build();
 
-        return greetingServiceBlockingStub.hello(request).getGreeting();
+        HelloResponse response = greetingService.hello(request);
+
+        return response.getGreeting();
     }
 }

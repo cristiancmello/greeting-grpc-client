@@ -45,6 +45,21 @@
 			<artifactId>lombok</artifactId>
 		</dependency>
 
+		<!-- Grpc-Test-Support -->
+		<dependency>
+			<groupId>io.grpc</groupId>
+			<artifactId>grpc-testing</artifactId>
+			<version>1.42.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Mocking Framework (Optional) -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.10.19</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
