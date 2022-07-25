@@ -1,0 +1,8 @@
+
+grpc:
+  server:
+    inProcessName: test
+    port: -1
+  client:
+    greeting-grpc-server:
+      address: "in-process:test"
